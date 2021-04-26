@@ -4,7 +4,7 @@ apply plugin: 'com.palantir.revapi'
 dependencies {
     api project(":extras:refresh-utils")
     api project(":client-config")
-    api project(":okhttp-clients")
+    api project(":conjure-java-legacy-clients")
     api "com.google.code.findbugs:jsr305"
     api "javax.ws.rs:javax.ws.rs-api"
     // TODO(dsanduleac): Should be implementation, but can't because we expose feign.TextDelegateEncoder
@@ -29,9 +29,9 @@ dependencies {
     implementation "com.palantir.tracing:tracing-okhttp3"
     implementation "org.slf4j:slf4j-api"
 
-    testImplementation project(":conjure-java-retrofit2-client")
     testImplementation project(":conjure-java-jersey-server")
     testImplementation project(':keystores')
+    testImplementation project(":okhttp-clients")
     testImplementation "com.netflix.feign:feign-jackson"
     testImplementation "com.squareup.okhttp3:mockwebserver"
     testImplementation("io.dropwizard:dropwizard-testing") { exclude module: 'metrics-core' }

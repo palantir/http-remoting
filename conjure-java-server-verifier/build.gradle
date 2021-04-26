@@ -9,6 +9,7 @@ dependencies {
     testImplementation project(':conjure-java-jersey-server')
     testImplementation project(':keystores')
     testImplementation project(':conjure-java-jackson-serialization')
+    testImplementation project(':okhttp-clients')
     testImplementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
     testImplementation("io.dropwizard:dropwizard-testing") { exclude module: 'metrics-core' }
     testImplementation "io.dropwizard.metrics:metrics-core"

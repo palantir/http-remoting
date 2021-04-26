@@ -1,0 +1,5 @@
+type: break
+break:
+  description: 'Conjure support for retrofit has been removed due to known vulerabilities and an inability to upgrade the library without breaking conjure. Projects which still use retrofit clients must migrate to dialogue.
+  links:
+  - https://github.com/palantir/conjure-java-runtime/pull/1853

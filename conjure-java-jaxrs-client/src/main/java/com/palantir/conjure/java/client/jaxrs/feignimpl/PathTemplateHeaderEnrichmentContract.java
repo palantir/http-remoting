@@ -16,12 +16,12 @@
 
 package com.palantir.conjure.java.client.jaxrs.feignimpl;
 
-import com.palantir.conjure.java.okhttp.OkhttpTraceInterceptor;
 import feign.Contract;
 import feign.MethodMetadata;
 import java.lang.reflect.Method;
 
 public final class PathTemplateHeaderEnrichmentContract extends AbstractDelegatingContract {
+    private static final String PATH_TEMPLATE_HEADER = "hr-path-template";
     /**
      * No longer used.
      *
@@ -45,7 +45,7 @@ public final class PathTemplateHeaderEnrichmentContract extends AbstractDelegati
     protected void processMetadata(Class<?> _targetType, Method _method, MethodMetadata metadata) {
         metadata.template()
                 .header(
-                        OkhttpTraceInterceptor.PATH_TEMPLATE_HEADER,
+                        PATH_TEMPLATE_HEADER,
                         metadata.template().method()
                                 + " "
                                 + metadata.template()

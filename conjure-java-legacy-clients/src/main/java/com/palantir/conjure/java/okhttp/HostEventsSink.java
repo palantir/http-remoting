@@ -17,11 +17,11 @@
 package com.palantir.conjure.java.okhttp;
 
 /**
- * A listener for responses / exceptions coming from remote hosts when using clients created from {@link OkHttpClients}.
+ * A listener for responses / exceptions coming from remote hosts when using clients.
  *
- * <p>We provide a {@link HostMetricsRegistry} implementation of this that turns these events into {@link HostMetrics}
+ * <p>We provide a HostMetricsRegistry implementation of this that turns these events into HostMetrics
  * for each remote host.
- * @deprecated prefer super interface
+ * @deprecated prefer super interface {@link com.palantir.conjure.java.client.config.HostEventsSink}
  */
 @Deprecated
 public interface HostEventsSink extends com.palantir.conjure.java.client.config.HostEventsSink {

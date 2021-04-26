@@ -7,14 +7,13 @@
 
 # Conjure Java Runtime (formerly http-remoting)
 This repository provides an opinionated set of libraries for defining and creating RESTish/RPC servers and clients based
-on [Feign](https://github.com/OpenFeign/feign) or [Retrofit](http://square.github.io/retrofit/) as a client and
+on [Feign](https://github.com/OpenFeign/feign) as a client and
 [Dropwizard](http://www.dropwizard.io/)/[Jersey](https://jersey.java.net/) with [JAX-RS](https://jax-rs-spec.java.net/)
 service definitions as a server. Refer to the [API Contract](#api-contract) section for details on the contract between
 clients and servers. This library requires Java 8.
 
 Core libraries:
 - conjure-java-jaxrs-client: Clients for JAX-RS-defined service interfaces
-- conjure-java-retrofit2-client: Clients for Retrofit-defined service interfaces
 - conjure-java-jersey-server: Configuration library for Dropwizard/Jersey servers
 - [conjure-java-runtime-api](https://github.com/palantir/conjure-java-runtime-api): API classes for service configuration, tracing, and error propagation
 
@@ -29,7 +28,6 @@ repositories {
 
 dependencies {
   compile "com.palantir.conjure.java.runtime:conjure-java-jaxrs-client:$version"
-  compile "com.palantir.conjure.java.runtime:conjure-java-retrofit2-client:$version"
   compile "com.palantir.conjure.java.runtime:conjure-java-jersey-server:$version"
 }
 ```
@@ -54,16 +52,6 @@ The `JaxRsClient#create` factory comes in two flavours: one for creating immutab
 `ClientConfiguration`, and one for creating mutable clients whose configuration (e.g., server URLs, timeouts, SSL
 configuration, etc.) changes when the underlying `ClientConfiguration` changes.
 
-## conjure-java-retrofit2-client
-Similar to `conjure-java-jaxrs-client`, but generates clients using the Retrofit library. Example:
-
-```java
-ClientConfiguration config = ... as above ... ;
-UserAgent userAgent = ... as above ... ;
-HostMetricsRegistry hostMetricsRegistry = new HostMetricsRegistry();  // can call .getMetrics() and then collect them to a central metrics repository
-MyService service = Retrofit2Client.create(MyService.class, userAgent, hostMetricsRegistry, config);
-```
-
 ## conjure-java-jersey-server
 Provides Dropwizard/Jersey configuration for handling conjure types, and also exception mappers for translating common
 runtime exceptions as well as our own `ServiceException` (see the [errors section](#errors-conjure-java-runtime-api))
@@ -80,8 +68,7 @@ public class MyServer extends Application<Configuration> {
 ```
 
 ## tracing
-Provides [Zipkin](https://github.com/openzipkin/zipkin)-style call tracing libraries. All `JaxRsClient` and
-`Retrofit2Client` instances are instrumented by default. Jersey server instrumentation is enabled via the
+Provides [Zipkin](https://github.com/openzipkin/zipkin)-style call tracing libraries. All `JaxRsClient` instances are instrumented by default. Jersey server instrumentation is enabled via the
 `ConjureJerseyFeature` (see above).
 
 Please refer to [tracing-java](https://github.com/palantir/tracing-java) for more details on the `tracing` library usage.
@@ -172,7 +159,7 @@ Provides utilities for relaying service errors across service boundaries (see be
 
 # API Contract
 
-conjure-java-runtime makes the following opinionated customizations to the standard Dropwizard/Feign/Retrofit behavior.
+conjure-java-runtime makes the following opinionated customizations to the standard Dropwizard/Feign behavior.
 
 #### Object serialization/deserialization
 
@@ -226,7 +213,7 @@ capturing the error code, error name, and error parameters. The resulting JSON r
 }
 ```
 
-Both JaxRsClient and Retrofit2Client intercept non-successful HTTP responses and throw a `RemoteException` wrapping the
+JaxRsClient intercepts non-successful HTTP responses and throw a `RemoteException` wrapping the
 deserialized server-side `SerializableError`. The error codes and names of the `ServiceException` and
 `SerializableError` are defined by the service API, and clients should handle errors based on the error code and name:
 
@@ -305,7 +292,7 @@ When a call to a service interface declaring an `Optional<T>` return value with 
   directly, rather than a deserialized `Optional<T>` object.
 
 JaxRsClients intercept such responses, deserialize the `T`-typed return value and return it to the caller wrapped as an
-`Optional<T>`. No is no equivalent concept for Retrofit2Clients.
+`Optional<T>`.
 
 #### Call tracing
 
@@ -340,7 +327,7 @@ The `QosExceptions` have a stable mapping to HTTP status codes and response head
 * `retryOther`: 308 Permanent Redirect, plus `Location` header indicating the target host
 * `unavailable`: 503 Unavailable
 
-conjure-java-runtime clients (both Retrofit2 and JaxRs) handle the above error codes and take the appropriate action:
+conjure-java-runtime clients handle the above error codes and take the appropriate action:
 * `throttle`: reschedule the request with a delay: either the indicated `Retry-After` period, or a configured
   exponential backoff
 * `retryOther`: retry the request against the indicated service node; all request parameters and headers are maintained

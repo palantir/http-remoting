@@ -24,7 +24,6 @@ org.immutables:value = 2.8.8
 org.jmock:jmock = 2.12.0
 org.mockito:mockito-core = 3.9.0
 org.slf4j:slf4j-api = 1.7.30
-io.leangen.geantyref:geantyref = 1.3.4
 io.undertow:undertow-core = 2.2.7.Final
 com.palantir.refreshable:refreshable = 1.2.0
 
@@ -34,9 +33,6 @@ com.fasterxml.jackson.*:jackson-* = 2.12.3
 
 # Temporarily pausing until internal libraries stop relying on UnrepeatableRequestBody
 com.squareup.okhttp3:* = 3.13.1
-
-# We cannot upgrade retrofit2 to 2.5.0 because of https://github.com/palantir/conjure-java-runtime/issues/930
-com.squareup.retrofit2:* = 2.4.0
 
 # Pin to same version as spark
 io.dropwizard.metrics:metrics-core = 3.2.6

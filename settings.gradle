@@ -1,9 +1,9 @@
 rootProject.name = 'conjure-java-runtime'
 
 include 'conjure-java-jaxrs-client'
-include 'conjure-java-retrofit2-client'
 include 'conjure-scala-jaxrs-client'
 include 'conjure-java-jackson-serialization'
+include 'conjure-java-legacy-clients'
 include 'conjure-java-client-verifier'
 include 'conjure-java-server-verifier'
 include 'extras:refresh-utils'

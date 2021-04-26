@@ -48,11 +48,6 @@ allprojects {
                 because "Spark still uses 3.X, which can't co-exist with 4.X"
             }
 
-            rootConfiguration 'com.squareup.retrofit2:retrofit', {
-                version { strictly '2.4.0' }
-                because 'Retrofit 2.5.0 breaks with our path parameter routing logic'
-            }
-
             rootConfiguration 'com.squareup.okhttp3:okhttp', {
                 version { strictly '[3, 3.14.0[' }
                 because 'okhttp 3.14.0 removed UnrepeatableRequestBody which is relied on by an internal library'

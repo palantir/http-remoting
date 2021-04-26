@@ -18,11 +18,8 @@ package com.palantir.verification;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 import com.palantir.conjure.verification.server.AutoDeserializeConfirmService;
 import com.palantir.conjure.verification.server.AutoDeserializeService;
-import com.palantir.conjure.verification.server.AutoDeserializeServiceRetrofit;
 import com.palantir.conjure.verification.server.EndpointName;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,7 +27,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
-import okhttp3.ResponseBody;
 import org.junit.Assume;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -48,8 +44,6 @@ public class AutoDeserializeTest {
     private static final Logger log = LoggerFactory.getLogger(AutoDeserializeTest.class);
     private static final AutoDeserializeService testServiceJersey =
             VerificationClients.autoDeserializeServiceJersey(server);
-    private static final AutoDeserializeServiceRetrofit testServiceRetrofit =
-            VerificationClients.autoDeserializeServiceRetrofit(server);
     private static final AutoDeserializeConfirmService confirmService = VerificationClients.confirmService(server);
 
     @Parameterized.Parameter(0)
@@ -92,37 +86,6 @@ public class AutoDeserializeTest {
 
     @Test
     @SuppressWarnings("IllegalThrows")
-    public void runTestCaseRetrofit() throws Error, NoSuchMethodException {
-        boolean shouldIgnore = Cases.shouldIgnoreRetrofit(endpointName, jsonString);
-        Method method = testServiceRetrofit.getClass().getMethod(endpointName.get(), int.class);
-        System.out.println(String.format(
-                "[%s%s test case %s]: %s(%s), expected client to %s",
-                shouldIgnore ? "ignored " : "",
-                shouldSucceed ? "positive" : "negative",
-                index,
-                endpointName,
-                jsonString,
-                shouldSucceed ? "succeed" : "fail"));
-
-        Optional<Error> expectationFailure =
-                shouldSucceed ? expectSuccessRetrofit(method) : expectFailureRetrofit(method);
-
-        if (shouldIgnore) {
-            assertThat(expectationFailure)
-                    .describedAs(
-                            "The test passed but the test case was ignored - remove this from ignored-test-cases.yml")
-                    .isNotEmpty();
-        }
-
-        Assume.assumeFalse(shouldIgnore);
-
-        if (expectationFailure.isPresent()) {
-            throw expectationFailure.get();
-        }
-    }
-
-    @Test
-    @SuppressWarnings("IllegalThrows")
     public void runTestCaseJersey() throws Error, NoSuchMethodException {
         boolean shouldIgnore = Cases.shouldIgnoreJersey(endpointName, jsonString);
         Method method = testServiceJersey.getClass().getMethod(endpointName.get(), int.class);
@@ -148,32 +111,6 @@ public class AutoDeserializeTest {
 
         if (expectationFailure.isPresent()) {
             throw expectationFailure.get();
-        }
-    }
-
-    private Optional<Error> expectSuccessRetrofit(Method method) {
-        try {
-            Object result = Futures.getUnchecked((ListenableFuture<?>) method.invoke(testServiceRetrofit, index));
-            log.info("Received result for endpoint {} and index {}: {}", endpointName, index, result);
-            Object clientResponse = result;
-            if (result instanceof ResponseBody) {
-                ResponseBody body = (ResponseBody) result;
-                clientResponse = body.bytes();
-            }
-            confirmService.confirm(endpointName, index, clientResponse);
-            return Optional.empty();
-        } catch (Exception e) {
-            return Optional.of(new AssertionError("Expected call to succeed, but caught exception", e));
-        }
-    }
-
-    private Optional<Error> expectFailureRetrofit(Method method) {
-        try {
-            Object result = Futures.getUnchecked((ListenableFuture<?>) method.invoke(testServiceRetrofit, index));
-            return Optional.of(new AssertionError(
-                    String.format("Result should have caused an exception but deserialized to: %s", result)));
-        } catch (Exception e) {
-            return Optional.empty(); // we expected the method to throw and it did, so this expectation was satisifed
         }
     }
 
