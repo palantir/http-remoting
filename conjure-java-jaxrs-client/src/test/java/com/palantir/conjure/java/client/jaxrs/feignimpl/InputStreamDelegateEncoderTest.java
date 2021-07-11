@@ -29,14 +29,17 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public final class InputStreamDelegateEncoderTest extends TestBase {
     @Mock
     private Encoder delegate;
@@ -51,7 +54,7 @@ public final class InputStreamDelegateEncoderTest extends TestBase {
 
     private GuavaTestServer.TestService service;
 
-    @Before
+    @BeforeEach
     public void before() {
         inputStreamDelegateEncoder = new InputStreamDelegateEncoder(delegate);
 

@@ -27,7 +27,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class DropwizardConfigTests {
     @ClassRule

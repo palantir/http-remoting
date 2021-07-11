@@ -54,10 +54,10 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import okio.Buffer;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -73,7 +73,7 @@ public final class Retrofit2ClientApiTest extends TestBase {
     private HttpUrl url;
     private TestService service;
 
-    @Before
+    @BeforeEach
     public void before() {
         url = server.url("/");
         service = Retrofit2Client.create(

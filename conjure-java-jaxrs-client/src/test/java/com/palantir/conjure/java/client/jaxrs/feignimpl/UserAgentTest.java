@@ -29,9 +29,9 @@ import com.palantir.dialogue.Channel;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 public final class UserAgentTest extends TestBase {
@@ -44,7 +44,7 @@ public final class UserAgentTest extends TestBase {
 
     private String endpointUri;
 
-    @Before
+    @BeforeEach
     public void before() {
         endpointUri = "http://localhost:" + server.getPort();
         server.enqueue(new MockResponse().setBody("\"body\""));

@@ -28,9 +28,9 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class TracerTest extends TestBase {
 
@@ -42,7 +42,7 @@ public final class TracerTest extends TestBase {
 
     private TestService service;
 
-    @Before
+    @BeforeEach
     public void before() {
         String uri = "http://localhost:" + server.getPort();
         service = Retrofit2Client.create(TestService.class, AGENT, new HostMetricsRegistry(), createTestConfig(uri));

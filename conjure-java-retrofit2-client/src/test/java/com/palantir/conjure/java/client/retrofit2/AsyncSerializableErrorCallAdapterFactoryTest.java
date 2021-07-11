@@ -22,18 +22,21 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.palantir.conjure.java.client.retrofit2.AsyncSerializableErrorCallAdapterFactory.CompletableFutureBodyCallAdapter;
 import com.palantir.conjure.java.client.retrofit2.AsyncSerializableErrorCallAdapterFactory.ListenableFutureBodyCallAdapter;
 import java.util.concurrent.CompletableFuture;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public class AsyncSerializableErrorCallAdapterFactoryTest {
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private Response<String> response;

@@ -24,7 +24,7 @@ import java.net.URL;
 import java.time.Duration;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class QosExceptionMapperTest {
 

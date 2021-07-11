@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
 import java.util.Collection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class HeaderAccessUtilsTest {
     private static final ImmutableMap<String, Collection<String>> TEST_HEADERS_MAP = ImmutableMap.of(

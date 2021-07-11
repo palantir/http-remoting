@@ -44,7 +44,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class ObjectMappersTest {
     private static final ObjectMapper MAPPER = ObjectMappers.newClientObjectMapper();

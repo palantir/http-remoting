@@ -29,10 +29,10 @@ import io.dropwizard.Configuration;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import java.nio.file.Paths;
 import java.util.Optional;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 public final class Java8OptionalAwareDecoderTest extends TestBase {
@@ -46,7 +46,7 @@ public final class Java8OptionalAwareDecoderTest extends TestBase {
 
     private Java8TestServer.TestService service;
 
-    @Before
+    @BeforeEach
     public void before() {
         String endpointUri = "http://localhost:" + APP.getLocalPort();
         service =

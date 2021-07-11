@@ -25,9 +25,9 @@ import javax.ws.rs.PathParam;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class JaxRsClientPathParamHandlingTest extends TestBase {
 
@@ -36,7 +36,7 @@ public final class JaxRsClientPathParamHandlingTest extends TestBase {
 
     private Service client;
 
-    @Before
+    @BeforeEach
     public void before() {
         client = JaxRsClient.create(
                 Service.class,

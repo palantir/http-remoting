@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.nio.file.Paths;
 import javax.net.ssl.SSLSocketFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class KeepAliveSslSocketFactoryTest {
 

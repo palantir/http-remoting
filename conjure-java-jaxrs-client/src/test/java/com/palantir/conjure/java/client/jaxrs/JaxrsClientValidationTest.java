@@ -21,7 +21,7 @@ import static org.mockito.Mockito.mock;
 
 import com.palantir.dialogue.Channel;
 import com.palantir.dialogue.ConjureRuntime;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class JaxrsClientValidationTest {
 

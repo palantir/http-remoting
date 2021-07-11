@@ -39,9 +39,9 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,12 +67,12 @@ public final class FlowControlTest {
             FlowControlTest.class,
             true);
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         executorService = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         executorService.shutdown();
     }

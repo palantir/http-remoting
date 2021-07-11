@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class ThreadWorkQueueTests {
     private final ThreadWorkQueue<Integer> queue = new ThreadWorkQueue<>();

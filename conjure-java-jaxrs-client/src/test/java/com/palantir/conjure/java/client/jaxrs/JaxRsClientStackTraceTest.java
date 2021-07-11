@@ -28,9 +28,9 @@ import com.palantir.conjure.java.okhttp.HostMetricsRegistry;
 import com.palantir.conjure.java.serialization.ObjectMappers;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class JaxRsClientStackTraceTest extends TestBase {
 
@@ -39,7 +39,7 @@ public final class JaxRsClientStackTraceTest extends TestBase {
 
     private TestService proxy;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         proxy = JaxRsClient.create(
                 TestService.class,

@@ -72,13 +72,17 @@ import okhttp3.mockwebserver.SocketPolicy;
 import okio.BufferedSink;
 import okio.Okio;
 import okio.Source;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public final class OkHttpClientsTest extends TestBase {
 
     @Rule
@@ -96,7 +100,7 @@ public final class OkHttpClientsTest extends TestBase {
     private String url2;
     private String url3;
 
-    @Before
+    @BeforeEach
     public void before() {
         url = "http://localhost:" + server.getPort();
         url2 = "http://localhost:" + server2.getPort();
@@ -736,7 +740,8 @@ public final class OkHttpClientsTest extends TestBase {
         assertThat(server2.takeRequest().getPath()).isEqualTo("/foo?bar");
     }
 
-    @Test(timeout = 10_000)
+    @Test
+@Timeout(value = 10000L, unit = TimeUnit.MILLISECONDS)
     public void handlesInterruptedThreads() throws Exception {
         server.enqueue(new MockResponse().setSocketPolicy(SocketPolicy.NO_RESPONSE));
 
@@ -852,7 +857,8 @@ public final class OkHttpClientsTest extends TestBase {
         assertThat(synchronousCall.body().string()).isEqualTo("Hello, world!");
     }
 
-    @Test(timeout = 10_000)
+    @Test
+@Timeout(value = 10000L, unit = TimeUnit.MILLISECONDS)
     public void randomizesUrls() throws IOException {
         boolean server2WasHit = false;
         server.shutdown();
@@ -903,7 +909,8 @@ public final class OkHttpClientsTest extends TestBase {
         assertThat(server.takeRequest().getHeader(HttpHeaders.HOST)).isEqualTo("foo.com");
     }
 
-    @Test(timeout = 1000)
+    @Test
+@Timeout(value = 1000L, unit = TimeUnit.MILLISECONDS)
     public void non_ioexceptions_dont_break_the_world() throws IOException {
         server.enqueue(new MockResponse().setBody("foo"));
 

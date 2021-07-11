@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import com.netflix.concurrency.limits.Limiter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConcurrencyLimitersTest {
 
