@@ -25,8 +25,8 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.reflect.Reflection;
 import java.util.function.Function;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -46,7 +46,7 @@ public final class RefreshableProxyInvocationHandlerTest {
     @Mock
     private Callable delegate2;
 
-    @Before
+    @BeforeEach
     public void before() {
         MockitoAnnotations.initMocks(this);
     }

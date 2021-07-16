@@ -28,9 +28,9 @@ import javax.ws.rs.core.MediaType;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class TextEncoderTest extends TestBase {
 
@@ -39,7 +39,7 @@ public final class TextEncoderTest extends TestBase {
 
     private Service service;
 
-    @Before
+    @BeforeEach
     public void before() {
         service = JaxRsClient.create(
                 Service.class,

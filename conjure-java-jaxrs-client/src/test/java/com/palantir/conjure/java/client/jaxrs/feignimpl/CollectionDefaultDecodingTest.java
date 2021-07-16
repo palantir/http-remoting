@@ -23,9 +23,9 @@ import com.palantir.conjure.java.client.jaxrs.TestBase;
 import com.palantir.conjure.java.okhttp.HostMetricsRegistry;
 import io.dropwizard.Configuration;
 import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /** Tests that nulls are correctly deserialized into empty collections. */
 public final class CollectionDefaultDecodingTest extends TestBase {
@@ -36,7 +36,7 @@ public final class CollectionDefaultDecodingTest extends TestBase {
 
     private Java8TestServer.TestService service;
 
-    @Before
+    @BeforeEach
     public void before() {
         String endpointUri = "http://localhost:" + APP.getLocalPort();
         service = JaxRsClient.create(

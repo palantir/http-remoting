@@ -10,4 +10,8 @@ dependencies {
     testCompile "org.jmock:jmock"
     testCompile "org.mockito:mockito-core"
     testCompile 'io.reactivex.rxjava2:rxjava'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine', {
+        because 'allows JUnit 3 and JUnit 4 tests to run'
+    }
 }

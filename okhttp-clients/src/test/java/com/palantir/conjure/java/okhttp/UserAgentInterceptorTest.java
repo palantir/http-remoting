@@ -28,9 +28,9 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 public final class UserAgentInterceptorTest {
@@ -41,7 +41,7 @@ public final class UserAgentInterceptorTest {
     @Rule
     public final MockWebServer server = new MockWebServer();
 
-    @Before
+    @BeforeEach
     public void before() {
         server.enqueue(new MockResponse().setBody("\"foo\""));
     }

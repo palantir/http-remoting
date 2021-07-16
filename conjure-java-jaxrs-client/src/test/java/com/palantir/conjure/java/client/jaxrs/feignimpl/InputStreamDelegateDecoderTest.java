@@ -32,9 +32,9 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public final class InputStreamDelegateDecoderTest extends TestBase {
@@ -46,7 +46,7 @@ public final class InputStreamDelegateDecoderTest extends TestBase {
     private Decoder delegate;
     private Decoder inputStreamDelegateDecoder;
 
-    @Before
+    @BeforeEach
     public void before() {
         delegate = Mockito.mock(Decoder.class);
         inputStreamDelegateDecoder = new InputStreamDelegateDecoder(delegate);

@@ -25,9 +25,9 @@ import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -39,7 +39,7 @@ public final class Retrofit2ClientQueryParamHandlingTest extends TestBase {
 
     private Service proxy;
 
-    @Before
+    @BeforeEach
     public void before() {
         HttpUrl url = server.url("/");
         proxy = Retrofit2Client.create(

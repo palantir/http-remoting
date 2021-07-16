@@ -36,10 +36,10 @@ import javax.ws.rs.QueryParam;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class SlashEncodingContractTest extends TestBase {
 
@@ -57,7 +57,7 @@ public final class SlashEncodingContractTest extends TestBase {
     private Service jerseyProxy;
     private Service inMemoryProxy;
 
-    @Before
+    @BeforeEach
     public void before() {
         jerseyProxy = JaxRsClient.create(
                 Service.class,

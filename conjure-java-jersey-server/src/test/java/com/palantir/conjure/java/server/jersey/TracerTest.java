@@ -36,10 +36,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 public final class TracerTest {
@@ -54,7 +54,7 @@ public final class TracerTest {
     private WebTarget target;
     private ch.qos.logback.classic.Level previousLoggerLevel;
 
-    @Before
+    @BeforeEach
     public void before() {
         String endpointUri = "http://localhost:" + APP.getLocalPort();
         JerseyClientBuilder builder = new JerseyClientBuilder();
@@ -63,7 +63,7 @@ public final class TracerTest {
         previousLoggerLevel = log.getLevel();
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
         log.setLevel(previousLoggerLevel);
     }

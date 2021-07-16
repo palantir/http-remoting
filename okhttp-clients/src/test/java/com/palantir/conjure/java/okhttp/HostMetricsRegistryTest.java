@@ -19,14 +19,14 @@ package com.palantir.conjure.java.okhttp;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Iterables;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class HostMetricsRegistryTest {
 
     private HostMetricsRegistry hostRegistry;
 
-    @Before
+    @BeforeEach
     public void before() {
         hostRegistry = new HostMetricsRegistry();
     }

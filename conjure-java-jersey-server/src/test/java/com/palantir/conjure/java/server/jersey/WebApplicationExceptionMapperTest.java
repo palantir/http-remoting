@@ -29,7 +29,7 @@ import javax.ws.rs.ServiceUnavailableException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.ParamException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class WebApplicationExceptionMapperTest {
 

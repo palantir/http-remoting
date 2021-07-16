@@ -25,8 +25,8 @@ import com.google.common.net.HttpHeaders;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -42,7 +42,7 @@ public final class MeshProxyInterceptorTest {
 
     private MeshProxyInterceptor interceptor;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         MockitoAnnotations.initMocks(this);
         interceptor = new MeshProxyInterceptor(HostAndPort.fromString("localhost:456"));

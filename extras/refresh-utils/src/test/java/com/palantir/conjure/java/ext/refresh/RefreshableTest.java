@@ -24,7 +24,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.concurrent.TimeUnit;
 import org.jmock.lib.concurrent.DeterministicScheduler;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public final class RefreshableTest {
 

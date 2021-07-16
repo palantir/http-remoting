@@ -40,10 +40,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import javax.ws.rs.core.MediaType;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 public final class TextDelegateDecoderTest extends TestBase {
@@ -61,7 +61,7 @@ public final class TextDelegateDecoderTest extends TestBase {
     private Decoder delegate;
     private Decoder textDelegateDecoder;
 
-    @Before
+    @BeforeEach
     public void before() {
         delegate = mock(Decoder.class);
         headers = new HashMap<>();

@@ -34,7 +34,7 @@ import java.util.OptionalLong;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

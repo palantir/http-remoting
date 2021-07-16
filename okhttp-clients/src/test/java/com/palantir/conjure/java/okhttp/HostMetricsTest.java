@@ -23,13 +23,16 @@ import com.codahale.metrics.Meter;
 import com.codahale.metrics.Timer;
 import java.time.Clock;
 import java.time.Instant;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public final class HostMetricsTest {
 
     private static final String SERVICE_NAME = "serviceName";
@@ -43,7 +46,7 @@ public final class HostMetricsTest {
     @Mock
     private Clock clock;
 
-    @Before
+    @BeforeEach
     public void before() {
         when(clock.millis()).thenReturn(firstInstant, secondInstant);
         hostMetrics = new DefaultHostMetrics(SERVICE_NAME, HOSTNAME, PORT, clock);

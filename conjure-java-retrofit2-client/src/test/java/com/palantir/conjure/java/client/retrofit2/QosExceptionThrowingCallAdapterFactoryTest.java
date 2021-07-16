@@ -34,8 +34,8 @@ import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.stubbing.Answer;
 import retrofit2.Call;
@@ -74,7 +74,7 @@ public final class QosExceptionThrowingCallAdapterFactoryTest {
     private final CallAdapter.Factory factory = new QosExceptionThrowingCallAdapterFactory(delegateFactory);
     private Retrofit retrofit;
 
-    @Before
+    @BeforeEach
     public void before() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(url)

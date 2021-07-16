@@ -21,4 +21,8 @@ dependencies {
     testImplementation 'com.palantir.dialogue:dialogue-serde', {
         exclude group: 'com.palantir.conjure.java.runtime'
     }
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine', {
+        because 'allows JUnit 3 and JUnit 4 tests to run'
+    }
 }

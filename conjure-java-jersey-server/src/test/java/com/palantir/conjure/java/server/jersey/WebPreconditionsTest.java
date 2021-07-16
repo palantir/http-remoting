@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 import javax.ws.rs.BadRequestException;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 public final class WebPreconditionsTest {

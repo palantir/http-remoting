@@ -32,10 +32,10 @@ import javax.ws.rs.QueryParam;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public final class JaxRsClientJava8OptionalHandlingTest extends TestBase {
 
@@ -44,7 +44,7 @@ public final class JaxRsClientJava8OptionalHandlingTest extends TestBase {
 
     private Service proxy;
 
-    @Before
+    @BeforeEach
     public void before() {
         proxy = JaxRsClient.create(
                 Service.class,
